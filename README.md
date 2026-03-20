@@ -15,7 +15,7 @@ This is triggered in two scenarios:
 1. **Editing plans** -- Plan files stored in `~/.claude/plans/` resolve to `../../` relative paths when skills or rules with `paths` patterns are present, causing plan creation and updates to fail.
 2. **After changing directories** -- When a bash command changes the working directory (e.g. `cd subdir && npm run ...`), files in the project root resolve to `../` paths relative to the new CWD, causing edits to fail.
 
-The root cause is the `node-ignore` library rejecting any relative path that starts with `../` but only when there are skills / rules that define a `paths:` pattern and when those skills and rules didn't get the changes to be activated depending on the files that got read/updated.
+The root cause is the `node-ignore` library rejecting any relative path that starts with `../` but only when there are skills / rules that define a `paths:` pattern and when those skills and rules didn't get the chances to be activated depending on the files that got read/updated.
 
 See [maleus-ai/claude-code-relative-path-bug](https://github.com/maleus-ai/claude-code-relative-path-bug) for a full reproduction.
 
